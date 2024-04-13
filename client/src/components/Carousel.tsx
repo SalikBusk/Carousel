@@ -27,8 +27,8 @@ const VariantsCarousel = {
     full: "aspect-square items-center justify-center",
   },
   imageSize: {
-    default: "w-full h-full border border-black",
-    full: "w-full h-full border border-black",
+    default: "w-full h-full border border-black rounded-md",
+    full: "w-full h-full border border-black rounded-md",
   },
   text: {
     title: {
@@ -71,16 +71,16 @@ const CarouselTemplate = ({
   return (
     <Carousel className={`${VariantsCarousel.variant[variant]}`}>
       <div className="flex flex-row justify-between items-center">
-          <div>
-            <span className={`${VariantsCarousel.text.title[variant]}`}>
-              {title}
-            </span>
-          </div>
-          <div className="flex flex-row gap-4">
-            <CarouselPrevious className={`${VariantsCarousel.Icons[variant]}`}/>
-            <CarouselNext className={`${VariantsCarousel.Icons[variant]}`}/>
-          </div>
+        <div>
+          <span className={`${VariantsCarousel.text.title[variant]}`}>
+            {title}
+          </span>
         </div>
+        <div className="flex flex-row gap-4">
+          <CarouselPrevious className={`${VariantsCarousel.Icons[variant]}`} />
+          <CarouselNext className={`${VariantsCarousel.Icons[variant]}`} />
+        </div>
+      </div>
       <CarouselContent>
         {data.map((item, index) => (
           <CarouselItem
@@ -89,20 +89,26 @@ const CarouselTemplate = ({
           >
             <div className={`${VariantsCarousel.padding[variant]}`}>
               <Card>
-                <CardContent className={`${VariantsCarousel.CardContent[variant]}`}>
-                  {item.image ? (
-                    <Image
-                      src={item.image}
-                      alt={item.label ? String(item.label) : "Image"}
-                      width={300}
-                      height={300}
-                      className={VariantsCarousel.imageSize[variant]}
-                    />
-                  ) : (
-                    <div className={VariantsCarousel.imageSize[variant]} />
-                  )}
+                <CardContent
+                  className={`${VariantsCarousel.CardContent[variant]}`}
+                >
+                  <div className={VariantsCarousel.imageSize[variant]}>
+                    {item.image ? (
+                      <Image
+                        src={item.image}
+                        alt={item.label ? String(item.label) : "Image"}
+                        width={300}
+                        height={300}
+                        className={VariantsCarousel.imageSize[variant]}
+                      />
+                    ) : (
+                      <div className={VariantsCarousel.imageSize[variant]} />
+                    )}
+                  </div>
                   <div className="py-5">
-                    <h5 className={`${VariantsCarousel.text.label[variant]}`}>{item.label}</h5>
+                    <h5 className={`${VariantsCarousel.text.label[variant]}`}>
+                      {item.label}
+                    </h5>
                   </div>
                 </CardContent>
               </Card>
